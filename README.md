@@ -12,4 +12,14 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-In `run.py`, change the imported demo file and call the `run()` method.
+Next, add a `.env` file in the project root directory with the following config:
+
+```ini
+TRANSPOSE_API_KEY=YOUR_API_KEY_HERE
+```
+
+Finally, uncomment the demos you want to run in `run.py` and run the following command:
+
+```python
+python run.py
+```

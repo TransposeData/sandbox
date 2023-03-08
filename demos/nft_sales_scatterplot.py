@@ -63,6 +63,9 @@ class NFTSaleScatterplot(BaseDemo):
         response.raise_for_status()
         results = response.json()['results']
         data = pd.DataFrame(results)
+        if len(data) == 0:
+            print("No data found for this contract address.")
+            return
         
         # plot scatterplot
         fig = px.scatter(data_frame=data, x="timestamp", y="usd_price", color="exchange_name")
