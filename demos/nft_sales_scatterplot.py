@@ -1,12 +1,11 @@
 from dateutil import parser
 import plotly.express as px
-import requests
 import pandas as pd
 
+from demos.utils.api import call_transpose_sql_api
 from base import BaseDemo
 
 
-TRANSPOSE_SQL_API_URL = 'https://api.transpose.io/sql'
 SQL_QUERY =\
     """
     SELECT timestamp, usd_price, exchange_name FROM ethereum.nft_sales
@@ -44,24 +43,13 @@ class NFTSaleScatterplot(BaseDemo):
     def run(self) -> None:
         
         # fetch NFT sales data
-        response = requests.post(
-            url=TRANSPOSE_SQL_API_URL,
-            headers={
-                'X-Api-Key': self.api_key
-            },
-            json={
-                'sql': SQL_QUERY,
-                'parameters': {
-                    'contract_address': self.contract_address,
-                    'start_dt': self.start_dt.isoformat(),
-                    'stop_dt': self.stop_dt.isoformat()
-                }
-            }
-        )
+        results = call_transpose_sql_api(self.api_key, SQL_QUERY, {
+            'contract_address': self.contract_address,
+            'start_dt': self.start_dt.isoformat(),
+            'stop_dt': self.stop_dt.isoformat()
+        })
 
         # parse response
-        response.raise_for_status()
-        results = response.json()['results']
         data = pd.DataFrame(results)
         if len(data) == 0:
             print("No data found for this contract address.")

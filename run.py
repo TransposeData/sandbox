@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 
 from demos.nft_sales_scatterplot import NFTSaleScatterplot
+from demos.token_price_chart import TokenPriceChart
 from demos.dex_price_viewer import DEXPriceViewer
 
 
@@ -15,8 +16,17 @@ if __name__ == "__main__":
     #     start_dt='2023-03-04',
     #     stop_dt='2023-03-05'
     # ).run()
+    
+    # DEMO 2: Token Price Chart
+    # TokenPriceChart(
+    #     api_key=os.getenv("TRANSPOSE_API_KEY"),
+    #     chain="canto",
+    #     token_address="0x826551890Dc65655a0Aceca109aB11AbDbD7a07B",
+    #     timeframe='hour',
+    #     window='2 weeks'
+    # ).run()
 
-    # DEMO 2: DEX Price Viewer
+    # DEMO 3: DEX Price Viewer
     DEXPriceViewer(
         api_key=os.getenv("TRANSPOSE_API_KEY")
     ).run()
