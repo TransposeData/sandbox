@@ -18,7 +18,7 @@ Next, add a `.env` file in the project root directory with the following config:
 TRANSPOSE_API_KEY=YOUR_API_KEY_HERE
 ```
 
-Finally, uncomment the demos you want to run in `run.py` and run the following command:
+Finally, uncomment the demos you want to run in `run.py` and execute the following command:
 
 ```python
 python run.py
